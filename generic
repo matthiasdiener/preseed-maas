@@ -53,8 +53,9 @@ d-i     preseed/late_command string true && \
     in-target sh -c "for file in /lib/modules/*; do depmod ${file##*/}; done"; \
     in-target update-initramfs -u; \
 {{endif}}
-	in-target sh -c 'echo "-----BEGIN CERTIFICATE----- MIIBzzCCATigAwIBAgIJANoANCFkHwigMA0GCSqGSIb3DQEBCwUAMBQxEjAQBgNVBAMTCXVibHMubWFhczAeFw0xNTA1MzEyMzQ1MzNaFw0yNTA1MjgyMzQ1MzNaMBQxEjAQBgNVBAMTCXVibHMubWFhczCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0F73VnFn26JA9SP97QZ1NfoyufwzxAF2ao11t4ntYJVR589iNE/PVw3/c0W3lsGAaDwgl+7EoBiAZWgdSg0avAg6KEKBsAawUTHfzlCR0g6guyWePDyowM2pN/j/ULn/Rd4M7qBay9KlAph9Txyt+chHZFCfSem+CeVv6fJy9gsCAwEAAaMpMCcwJQYDVR0RBB4wHIIJdWJscy5tYWFzgg8xOTIuMTY4LjEyMi4yMDMwDQYJKoZIhvcNAQELBQADgYEAoPrhKsPctZlFrXCkKY1ySZY4qH3N8HAiIQbksA6kYRPPwpwHsY1j7HvODpFAuuzw2cl2IP3BkiJrIIjjqKqP3xYOnp7ROJcUfBioebAj7TAPFax9yjKufpYcL77Ymzk55ZJ0S1CENq/JzTWH216jP3ROMRCb3c81ss2QBZN9TfQ=-----END CERTIFICATE-----" > /etc/landscape/server.crt' ;\
-	in-target sh -c "landscape-config --ok-no-register --silent --script-users ALL --computer-title {{node.hostname}} --account-name standalone  --url https://ubls.maas/message-system --ping-url http://ubls.maas/ping -k /etc/landscape/server.crt"
+	in-target sh -c 'echo "-----BEGIN CERTIFICATE-----MIIBwDCCASmgAwIBAgIJANZZDI/2rBU6MA0GCSqGSIb3DQEBCwUAMA8xDTALBgNVBAMTBHVibHMwHhcNMTUwNjAxMTU1MTI5WhcNMjUwNTI5MTU1MTI5WjAPMQ0wCwYDVQQDEwR1YmxzMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCm/H3XvvQQFB5+kIOMvd6+Ab4fg7Q3xw8fFFyQKSEDcFJL/zcCEfOcgJYt7PP1Axfw3wtMskf8eIQDIhCGMghSJO7m7x2nyzvaOVjGMHnJrPwIGGvnnFQMAgvWxPVjBoSt3J0Z3ARogbjIlpl3nlOUkQUEBt3XT1tRnXqP1yeYRwIDAQABoyQwIjAgBgNVHREEGTAXggR1Ymxzgg8xOTIuMTY4LjEyMi4yMDcwDQYJKoZIhvcNAQELBQADgYEAAOKD1cG0n7aPX3OU/zb0iuWJtviYYwo6J0SyT1tr3Fd7q7on49Z2bsHBnuKKXFuweClRjq6CKtq0ZnmmnJArADwRG4jUCAsp3jJMoXi7jOwYUAYtIg6K4ma/D5Sc90tNaSj08tQNajzxKpymS8ub083sx1kmE74+w3tRvZ95agg=-----END CERTIFICATE-----" > /etc/landscape/server.crt' ;\
+	in-target sh -c 'echo "192.168.124.165 ubls" >> /etc/hosts' ;\
+	in-target sh -c "landscape-config --ok-no-register --http-proxy= --silent --script-users ALL --computer-title {{node.hostname}} --account-name standalone  --url https://ubls/message-system --ping-url http://ubls/ping -k /etc/landscape/server.crt"
 {{enddef}}
 
 {{def install_udeb}}
