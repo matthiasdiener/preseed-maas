@@ -68,9 +68,6 @@ d-i     user-setup/allow-password-weak  boolean true
 d-i     user-setup/encrypt-home         boolean false
 d-i     passwd/user-default-groups      string adm cdrom dialout lpadmin plugdev sambashare
 
-# Install Landscape
-#  BUG?:
-d-i     pkgsel/include  string landscape-client
 
 
 # APT
@@ -111,9 +108,3 @@ d-i     debian-installer/exit/poweroff  boolean false
 
 # Post scripts.
 {{self.post_scripts}}
-
-#%packages
-#landscape-client
-
-# TODO:
-# - register with landscape server
