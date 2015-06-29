@@ -53,9 +53,8 @@ d-i     preseed/late_command string true && \
     in-target sh -c "for file in /lib/modules/*; do depmod ${file##*/}; done"; \
     in-target update-initramfs -u; \
 {{endif}}
-	in-target sh -c 'echo "-----BEGIN CERTIFICATE-----MIIBwDCCASmgAwIBAgIJANZZDI/2rBU6MA0GCSqGSIb3DQEBCwUAMA8xDTALBgNVBAMTBHVibHMwHhcNMTUwNjAxMTU1MTI5WhcNMjUwNTI5MTU1MTI5WjAPMQ0wCwYDVQQDEwR1YmxzMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCm/H3XvvQQFB5+kIOMvd6+Ab4fg7Q3xw8fFFyQKSEDcFJL/zcCEfOcgJYt7PP1Axfw3wtMskf8eIQDIhCGMghSJO7m7x2nyzvaOVjGMHnJrPwIGGvnnFQMAgvWxPVjBoSt3J0Z3ARogbjIlpl3nlOUkQUEBt3XT1tRnXqP1yeYRwIDAQABoyQwIjAgBgNVHREEGTAXggR1Ymxzgg8xOTIuMTY4LjEyMi4yMDcwDQYJKoZIhvcNAQELBQADgYEAAOKD1cG0n7aPX3OU/zb0iuWJtviYYwo6J0SyT1tr3Fd7q7on49Z2bsHBnuKKXFuweClRjq6CKtq0ZnmmnJArADwRG4jUCAsp3jJMoXi7jOwYUAYtIg6K4ma/D5Sc90tNaSj08tQNajzxKpymS8ub083sx1kmE74+w3tRvZ95agg=-----END CERTIFICATE-----" > /etc/landscape/server.crt' ;\
-	in-target sh -c 'echo "192.168.124.165 ubls" >> /etc/hosts' ;\
-	in-target sh -c "landscape-config --ok-no-register --http-proxy= --silent --script-users ALL --computer-title {{node.hostname}} --account-name standalone  --url https://ubls/message-system --ping-url http://ubls/ping -k /etc/landscape/server.crt"
+	in-target sh -c 'echo "-----BEGIN CERTIFICATE-----MIICBDCCAW2gAwIBAgIJAOUfb9TiMxWUMA0GCSqGSIb3DQEBCwUAMCYxJDAiBgNVBAMTG2dwcGQtbGFuZHNjYXBlLmNsb3VkYXBwLm5ldDAeFw0xNTA2MjkyMTU3MzRaFw0yNTA2MjYyMTU3MzRaMCYxJDAiBgNVBAMTG2dwcGQtbGFuZHNjYXBlLmNsb3VkYXBwLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA3hzOQQOn4jTk7WC9TmK/zrsm1UhLCb6IAVwOdZnZiGthN1skWN3klL0RISvQvKvO4GlavGMbim0YSLbEwqS9Ig0quHHbnc8unFFZowZSNikPTcuVADM524pjVtEesIigc0D4x6eMsg+UMW9LscuYHvpAnEEHZAsyFCsw0TDghtUCAwEAAaM6MDgwNgYDVR0RBC8wLYIbZ3BwZC1sYW5kc2NhcGUuY2xvdWRhcHAubmV0gg4xMDAuNzkuMjE0LjIwMTANBgkqhkiG9w0BAQsFAAOBgQBxXHlycr3hcGjF+C2L+a2YhdXTYl5x0UUWFt2jV1sUF85PIXRh7KaHa8kXDaU6emOkUErd4JSMYifOM3MMJpwzodZGyqcnFmKLnLIa02O6FzzKtJP/y3LYHoui/VkJj7FXRPMIUTUUBPz2E8eR9jM5MSGPJIAcLOU44WS/aNkiEA==-----END CERTIFICATE-----" > /etc/landscape/server.crt' ;\
+	in-target sh -c "landscape-config --ok-no-register --http-proxy= --silent --script-users ALL --computer-title {{node.hostname}} --account-name standalone  --url https://gppd-landscape.cloudapp.net/message-system --ping-url http://gppd-landscape.cloudapp.net/ping -k /etc/landscape/server.crt"
 {{enddef}}
 
 {{def install_udeb}}
